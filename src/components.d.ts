@@ -20,6 +20,8 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface ZText {
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +30,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLZTextElement extends Components.ZText, HTMLStencilElement {
+    }
+    var HTMLZTextElement: {
+        prototype: HTMLZTextElement;
+        new (): HTMLZTextElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "z-text": HTMLZTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +56,11 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface ZText {
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "z-text": ZText;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +68,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "z-text": LocalJSX.ZText & JSXBase.HTMLAttributes<HTMLZTextElement>;
         }
     }
 }
